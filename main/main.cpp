@@ -13,6 +13,16 @@ void leerNotas(double notas[NUM_MATERIAS][NUM_TRIMESTRES]) {
     }
 }
 
+void calcularPromediosAnuales(const double notas[NUM_MATERIAS][NUM_TRIMESTRES], double promedios[NUM_MATERIAS]) {
+    for (int i = 0; i < NUM_MATERIAS; ++i) {
+        double suma = 0;
+        for (int j = 0; j < NUM_TRIMESTRES; ++j) {
+            suma += notas[i][j];
+        }
+        promedios[i] = suma / NUM_TRIMESTRES;
+    }
+}
+
 int main() {
     double notas[NUM_MATERIAS][NUM_TRIMESTRES];
     double promedios[NUM_MATERIAS];
