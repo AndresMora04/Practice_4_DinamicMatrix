@@ -23,6 +23,22 @@ void calcularPromediosAnuales(const double notas[NUM_MATERIAS][NUM_TRIMESTRES], 
     }
 }
 
+void imprimirResultados(const double notas[NUM_MATERIAS][NUM_TRIMESTRES], const double promedios[NUM_MATERIAS]) {
+    std::cout << "Notas por materia:\n";
+    for (int i = 0; i < NUM_MATERIAS; ++i) {
+        std::cout << "Materia " << (char)('A' + i) << ": ";
+        for (int j = 0; j < NUM_TRIMESTRES; ++j) {
+            std::cout << notas[i][j] << " ";
+        }
+        std::cout << '\n';
+    }
+
+    std::cout << "\nPromedios anuales:\n";
+    for (int i = 0; i < NUM_MATERIAS; ++i) {
+        std::cout << "Materia " << (char)('A' + i) << ": " << promedios[i] << '\n';
+    }
+}
+
 int main() {
     double notas[NUM_MATERIAS][NUM_TRIMESTRES];
     double promedios[NUM_MATERIAS];
