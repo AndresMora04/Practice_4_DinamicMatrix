@@ -1,49 +1,57 @@
 #include <iostream>
 
-const int NUM_MATERIAS = 4; 
-const int NUM_TRIMESTRES = 3; 
+const int NUM_SUBJECTS = 4;
+const int NUM_QUARTERS = 3;
 
-void leerNotas(double notas[NUM_MATERIAS][NUM_TRIMESTRES]) {
-    for (int i = 0; i < NUM_MATERIAS; ++i) {
-        std::cout << "Ingrese las notas para la materia " << (char)('A' + i) << ":\n";
-        for (int j = 0; j < NUM_TRIMESTRES; ++j) {
-            std::cout << "Trimestre " << j + 1 << ": ";
-            std::cin >> notas[i][j];
+using namespace std;
+
+void readGrades(double grades[NUM_SUBJECTS][NUM_QUARTERS]) {
+    for (int i = 0; i < NUM_SUBJECTS; ++i) {
+        cout << "Enter grades for subject " << (char)('A' + i) << ":\n";
+        for (int j = 0; j < NUM_QUARTERS; ++j) {
+            cout << "Quarter " << j + 1 << ": ";
+            cin >> grades[i][j];
         }
     }
 }
 
-void calcularPromediosAnuales(const double notas[NUM_MATERIAS][NUM_TRIMESTRES], double promedios[NUM_MATERIAS]) {
-    for (int i = 0; i < NUM_MATERIAS; ++i) {
-        double suma = 0;
-        for (int j = 0; j < NUM_TRIMESTRES; ++j) {
-            suma += notas[i][j];
+void calculateAnnualAverages(const double grades[NUM_SUBJECTS][NUM_QUARTERS], double averages[NUM_SUBJECTS]) {
+    for (int i = 0; i < NUM_SUBJECTS; ++i) {
+        double sum = 0;
+        for (int j = 0; j < NUM_QUARTERS; ++j) {
+            sum += grades[i][j];
         }
-        promedios[i] = suma / NUM_TRIMESTRES;
+        averages[i] = sum / NUM_QUARTERS;
     }
 }
 
-void imprimirResultados(const double notas[NUM_MATERIAS][NUM_TRIMESTRES], const double promedios[NUM_MATERIAS]) {
-    std::cout << "Notas por materia:\n";
-    for (int i = 0; i < NUM_MATERIAS; ++i) {
-        std::cout << "Materia " << (char)('A' + i) << ": ";
-        for (int j = 0; j < NUM_TRIMESTRES; ++j) {
-            std::cout << notas[i][j] << " ";
+void printResults(const double grades[NUM_SUBJECTS][NUM_QUARTERS], const double averages[NUM_SUBJECTS]) {
+    cout << "Grades per subject:\n";
+    for (int i = 0; i < NUM_SUBJECTS; ++i) {
+        cout << "Subject " << (char)('A' + i) << ": ";
+        for (int j = 0; j < NUM_QUARTERS; ++j) {
+            cout << grades[i][j] << " ";
         }
-        std::cout << '\n';
+        cout << '\n';
     }
 
-    std::cout << "\nPromedios anuales:\n";
-    for (int i = 0; i < NUM_MATERIAS; ++i) {
-        std::cout << "Materia " << (char)('A' + i) << ": " << promedios[i] << '\n';
+    cout << "\nAnnual Averages:\n";
+    for (int i = 0; i < NUM_SUBJECTS; ++i) {
+        cout << "Subject " << (char)('A' + i) << ": " << averages[i] << '\n';
     }
 }
 
 int main() {
-    double notas[NUM_MATERIAS][NUM_TRIMESTRES];
-    double promedios[NUM_MATERIAS];
+    double grades[NUM_SUBJECTS][NUM_QUARTERS];
+    double averages[NUM_SUBJECTS];
 
-    std::cout << "=== Sistema de Registro de Notas ===\n";
+    cout << "=== Grades Recording System ===\n";
+
+    readGrades(grades);
+
+    calculateAnnualAverages(grades, averages);
+
+    printResults(grades, averages);
 
     return 0;
 }
